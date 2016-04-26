@@ -1,6 +1,5 @@
 class UserMarksAsReadTest < ActiveSupport::TestCase
   test "user can not edit links with bad url" do
-    Link.create(url: "http://turing.io/", title: "title")
     create_user_and_log_in
 
     within("#title") do

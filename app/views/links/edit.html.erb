@@ -1,0 +1,14 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_for(@link) do |f| %>
+
+   <%= f.label :url %>
+   <%= f.text_field :url %>
+
+   <%= f.label :title %>
+   <%= f.text_field :title %>
+
+   <%= f.submit "Save changes" %>
+ <% end %>

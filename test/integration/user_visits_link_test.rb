@@ -6,7 +6,6 @@ class UserVisitsLinkTest < ActiveSupport::TestCase
   test "user visits link page, uses incorrect url" do
     create_user_and_log_in
 
-
     fill_in('Url', :with => "base")
     fill_in('Title', :with => "title")
 

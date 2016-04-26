@@ -26,6 +26,17 @@ class LinksController < ApplicationController
     redirect_to links_path
   end
 
+  def update
+    link = Link.find_by(id: params[:id])
+    if link.update(link_params)
+      flash[:notice] = "Successfully saved link."
+      redirect_to links_path
+    else
+      flash[:notice] = "Save unsuccessful."
+      redirect_to edit_link_path
+    end
+  end
+
   private
 
   def link_params

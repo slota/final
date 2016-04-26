@@ -8,6 +8,8 @@ class ActiveSupport::TestCase
   fixtures :all
   include Capybara::DSL
   def create_user_and_log_in
+    Link.create(url: "http://turing.io/", title: "title")
+    
     User.create(email: "John.Slota@gmail.com", password: "123")
     visit("/")
     click_link("Log in")
