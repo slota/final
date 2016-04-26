@@ -29,6 +29,7 @@ class LinksController < ApplicationController
 
   def update
     link = Link.find_by(id: params[:id])
+    link.update(user_id: current_user.id)
     if link.update(link_params)
       flash[:notice] = "Successfully saved link."
       redirect_to links_path
