@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   def index
     @user = current_user
-    @links = Link.all
+    @links = current_user.links
   end
 
   def edit
@@ -18,7 +18,8 @@ class LinksController < ApplicationController
 
   def create
     link = Link.new(link_params)
-    if link.save
+    link.user_id = current_user.id
+    if link.save(user_id: current_user.id)
       flash[:notice] = "Successfully saved link."
     else
       flash[:notice] = "URL is not valid."
