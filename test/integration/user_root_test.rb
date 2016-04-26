@@ -30,21 +30,7 @@ class UserVisitsRootTest < ActiveSupport::TestCase
   end
 
   test "existing user clicks log in" do
-    create_user
-
-    visit("/")
-    click_link("Log in")
-
-    assert page.has_content?("Email")
-    assert page.has_content?("Password")
-
-    fill_in('Email', :with => "John.Slota@gmail.com")
-    fill_in('Password', :with => "123")
-
-    click_on("Log in")
-
-    assert_current_path("/links")
-    assert page.has_content?("Welcome John.Slota@gmail.com")
+    create_user_and_log_in
   end
 
   test "authenticated user signs out" do

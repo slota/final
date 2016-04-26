@@ -19,3 +19,20 @@ Welcome <%= @user.email %>
     <%= f.submit %>
   </p>
 <% end %>
+
+<% @links.each do |link| %>
+  <div id="<%= link.title %>">
+    <% if link.read %>
+      <p1>
+        <%= link.url %>
+        <%= link.title %>
+      </p1>
+      <%= link_to("Mark as unread", edit_link_path(link, "mark as unread")) %>
+    <% else %>
+      <%= link.url %>
+      <%= link.title %>
+      <%= link_to("Mark as read", edit_link_path(link, "mark as read")) %>
+    <% end %>
+    <%= link_to("edit", edit_link_path(link)) %>
+  </div>
+<% end %>
