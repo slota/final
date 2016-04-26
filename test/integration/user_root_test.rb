@@ -30,7 +30,7 @@ class UserVisitsRootTest < ActiveSupport::TestCase
   end
 
   test "existing user clicks log in" do
-    User.create(email: "John.Slota@gmail.com", password: "123")
+    create_user
 
     visit("/")
     click_link("Log in")
