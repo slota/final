@@ -4,6 +4,18 @@ class LinksController < ApplicationController
     @links = Link.all
   end
 
+  def edit
+    @link = Link.find_by(id: params[:id])
+    if params[:format].class == String
+      if params[:format] == "mark as read"
+        @link.update(read: true)
+      else
+        @link.update(read: false)
+      end
+      redirect_to links_path
+    end
+  end
+
   def create
     link = Link.new(link_params)
     if link.save
