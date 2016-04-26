@@ -26,7 +26,7 @@ class UserVisitsRootTest < ActiveSupport::TestCase
     click_on("Save User")
 
     assert_current_path("/links")
-    assert page.has_content?("Welcome John.Slota@gmail.com")
+    assert page.has_content?("Welcome john.slota@gmail.com")
   end
 
   test "existing user clicks log in" do
@@ -48,7 +48,7 @@ class UserVisitsRootTest < ActiveSupport::TestCase
     click_on("Save User")
 
     assert_current_path("/links")
-    assert page.has_content?("Welcome John.Slota@gmail.com")
+    assert page.has_content?("Welcome john.slota@gmail.com")
 
     assert page.has_content?("Sign Out")
     click_on("Sign Out")

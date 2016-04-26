@@ -6,7 +6,7 @@ class UserVisitsLinkPageTest < ActiveSupport::TestCase
     create_user_and_log_in
 
     assert_current_path("/links")
-    assert page.has_content?("Welcome John.Slota@gmail.com")
+    assert page.has_content?("Welcome john.slota@gmail.com")
     assert page.has_content?("Url")
     assert page.has_content?("Title")
 
@@ -33,7 +33,7 @@ class UserVisitsLinkPageTest < ActiveSupport::TestCase
     create_user_and_log_in
 
     assert_current_path("/links")
-    assert page.has_content?("Welcome John.Slota@gmail.com")
+    assert page.has_content?("Welcome john.slota@gmail.com")
     assert page.has_content?("Url")
     assert page.has_content?("Title")
 

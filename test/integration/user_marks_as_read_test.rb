@@ -8,7 +8,7 @@ class UserMarksAsReadTest < ActiveSupport::TestCase
     end
 
     assert_current_path("/links")
-    assert page.has_content?("Welcome John.Slota@gmail.com")
+    assert page.has_content?("Welcome john.slota@gmail.com")
     assert page.has_content?("http://turing.io/")
     assert page.has_content?("title")
 

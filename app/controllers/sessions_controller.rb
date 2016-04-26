@@ -3,12 +3,13 @@ class SessionsController < ApplicationController
   end
 
   def create
+    params[:session][:email].downcase!
     @user = User.find_by(session_params)
     if @user && @user.authenticate(params[:session][:password])
       session[:current_user_id] = @user.id
       redirect_to links_path
     else
-      flash[:danger] = 'Invalid email/password combination'
+      flash[:notice] = 'Invalid email/password combination'
       render 'new'
     end
   end

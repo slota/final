@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def create
     if check_password(params["user"]["password_confirmation"], user_params["password"])
+      params["user"]["email"].downcase!
       user = User.new(user_params)
       create_user(user)
     else
