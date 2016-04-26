@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     create_user(user)
   end
 
+  def destroy
+    session[:current_user_id] = []
+    redirect_to root_path
+  end
+
   private
 
   def create_user(user)
