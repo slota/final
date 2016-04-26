@@ -3,9 +3,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    check_password(params["user"]["password_confirmation"], user_params["password"])
-    user = User.new(user_params)
-    create_user(user)
+    if check_password(params["user"]["password_confirmation"], user_params["password"])
+      user = User.new(user_params)
+      create_user(user)
+    else
+      flash[:notice] = "Passwords do not match"
+      redirect_to_new_user
+    end
   end
 
   def destroy
@@ -29,9 +33,7 @@ class UsersController < ApplicationController
   end
 
   def check_password(check_password, password)
-    if check_password != password
-      redirect_to_new_user
-    end
+    check_password == password
   end
 
   def user_params

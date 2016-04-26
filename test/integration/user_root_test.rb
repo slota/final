@@ -29,6 +29,24 @@ class UserVisitsRootTest < ActiveSupport::TestCase
     assert page.has_content?("Welcome John.Slota@gmail.com")
   end
 
+  test "existing user clicks log in" do
+    User.create(email: "John.Slota@gmail.com", password: "123")
+
+    visit("/")
+    click_link("Log in")
+
+    assert page.has_content?("Email")
+    assert page.has_content?("Password")
+
+    fill_in('Email', :with => "John.Slota@gmail.com")
+    fill_in('Password', :with => "123")
+
+    click_on("Log in")
+
+    assert_current_path("/links")
+    assert page.has_content?("Welcome John.Slota@gmail.com")
+  end
+
   test "authenticated user signs out" do
     visit("/")
     click_link("Sign Up")
@@ -50,6 +68,24 @@ class UserVisitsRootTest < ActiveSupport::TestCase
     click_on("Sign Out")
 
     assert_current_path("/")
+  end
+
+  test "user passwords does not match" do
+    visit("/")
+    click_link("Sign Up")
+
+    assert page.has_content?("Email")
+    assert page.has_content?("Password")
+    assert page.has_content?("Password confirmation")
+
+    fill_in('Email', :with => "John.Slota@gmail.com")
+    fill_in('Password', :with => "123")
+    fill_in('Password confirmation', :with => "321")
+
+    click_on("Save User")
+
+    assert_current_path("/users/new")
+    assert page.has_content?("Passwords do not match")
   end
 
 end
